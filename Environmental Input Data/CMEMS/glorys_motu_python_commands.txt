@@ -1,0 +1,10 @@
+# Note: Change date range and other download configurations as desired
+
+# Variable: thetao
+python -m motuclient --motu http://my.cmems-du.eu/motu-web/Motu --service-id GLOBAL_REANALYSIS_PHY_001_030-TDS --product-id global-reanalysis-phy-001-030-daily --longitude-min -100 --longitude-max -40 --latitude-min 40 --latitude-max 85 --date-min "2018-01-01 12:00:00" --date-max "2018-01-31 12:00:00" --depth-min 0.493 --depth-max 222.4753 --variable thetao --out-dir 2018 --out-name glorys_2018_01_thetao --user agarbo --pwd '#############'
+
+# Variable: uo
+python -m motuclient --motu http://my.cmems-du.eu/motu-web/Motu --service-id GLOBAL_REANALYSIS_PHY_001_030-TDS --product-id global-reanalysis-phy-001-030-daily --longitude-min -100 --longitude-max -40 --latitude-min 40 --latitude-max 85 --date-min "2018-01-01 12:00:00" --date-max "2018-01-31 12:00:00" --depth-min 0.493 --depth-max 222.4753 --variable uo --out-dir 2018 --out-name glorys_2018_01_uo --user agarbo --pwd '#############'
+
+# Variable: vo
+python -m motuclient --motu http://my.cmems-du.eu/motu-web/Motu --service-id GLOBAL_REANALYSIS_PHY_001_030-TDS --product-id global-reanalysis-phy-001-030-daily --longitude-min -100 --longitude-max -40 --latitude-min 40 --latitude-max 85 --date-min "2018-01-01 12:00:00" --date-max "2018-01-31 12:00:00" --depth-min 0.493 --depth-max 222.4753 --variable vo --out-dir 2018 --out-name glorys_2018_01_vo --user agarbo --pwd '#############'
