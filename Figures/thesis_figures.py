@@ -6,7 +6,7 @@ Last modified: 2022-01-18
 @author: Adam Garbo
 
 Description: 
-    - Python code to generate figures contained in the thesis entitled: 
+    - Python code to produce figures contained in the thesis: 
     "Validation of the North American Ice Service Iceberg Drift Model"
     
 Notes:
