@@ -9,10 +9,10 @@ Modified on Fri Dec 17 15:00:00 2021
 analyze_iceberg_beacon_database.py
 
 Description:
-    Used to assess the quality of raw iceberg trajectories contained in the 
+    - Used to assess the quality of raw iceberg trajectories contained in the 
     iceberg beacon database and also the suitability of data for use in the 
     validation study of the NAIS iceberg drift model.
-    Calculates speed, distance, and direction of sucessive iceberg positions 
+    - Calculates speed, distance, and direction of sucessive iceberg positions 
     and visualizes the data in map/graph format.
     
 """

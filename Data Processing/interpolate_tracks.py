@@ -8,7 +8,7 @@ Created on Fri Jul 23 13:01:32 2021
 interpolate_tracks.py
 
 Description:
-   Interpolates irregular iceberg observations to a standardized time interval 
+   - Interpolates irregular iceberg observations to a standardized time interval 
    between observations.
 
 """
@@ -33,17 +33,14 @@ path_output = (
 # Find all files in folder
 files = glob.glob(path_input + "/*.csv")
 
-# Iterate through each error file and create plots
+# Iterate through each file and interpolate data
 for file in files:
-
     print(file)
-    # Plot error
     interpolate_tracks(file)
 
 # ----------------------------------------------------------------------------
 # Interpolation Function
 # ----------------------------------------------------------------------------
-
 
 def interpolate_tracks(filename):
     """
@@ -119,7 +116,7 @@ def interpolate_tracks(filename):
 
 
 # ----------------------------------------------------------------------------
-# Merge error metrics into a single CSV file
+# Merge interpolated iceberg tracks into a single CSV file
 # ----------------------------------------------------------------------------
 
 path_input = (
