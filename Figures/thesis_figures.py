@@ -549,7 +549,7 @@ plt.savefig(
 # -----------------------------------------------------------------------------
 # Figure 3.12
 # Scatterplot of cumluative distances vs. iceberg length
-# Last confirmed working 2022-01-13
+# Last confirmed working 2022-01-18
 # -----------------------------------------------------------------------------
 
 # Load data
@@ -568,31 +568,14 @@ df2 = df2.rename(columns={"beacon_id": "id"})
 # Select required columns
 df2 = df2[["id", "length", "keel"]]
 
-# Merge dataframes
-df3 = pd.merge(df1, df2, on="id")
 
-# Subset head and tail values
-df4 = df3.sort_values("datetime").groupby("ensemble").tail(1)
-
-# Select only 96-hour observations to avoid biases of shorter tracks
-df4 = df4[df4["dur_obs"] == 96]
-
-# Plot
-fig, ax = plt.subplots(figsize=(8, 5))
-sns.regplot(
-    x="length",
-    y="dist_csum_obs",
-    data=df4,
-    scatter_kws={"color": "grey", "edgecolor": "black"},
-    line_kws={"color": "k"},
-)
-ax.set(
-    xlabel="Length (m)",
-    ylabel="Cumulative Distance (km)",
-    xlim=(0, 1600),
-    ylim=(-3, 225),
-)
-ax.xaxis.set_major_locator(mticker.MultipleLocator(250))
+fig, ax = plt.subplots(figsize=(8,5))
+sns.regplot(x='keel', y='length', data=df2, ci=None,
+            scatter_kws={"color": 'grey', 'edgecolor':'black'}, 
+            line_kws={'color': 'k'})
+ax.set(xlabel='Keel depth (m)', ylabel='Length (m)', )
+ax.xaxis.set_major_locator(mticker.MultipleLocator(25))
+ax.yaxis.set_major_locator(mticker.MultipleLocator(250))
 sns.despine()
 # Save figure
 fig.savefig(
