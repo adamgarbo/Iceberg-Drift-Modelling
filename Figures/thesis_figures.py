@@ -711,7 +711,7 @@ fig.savefig(
 )
 
 # -------------------------------------------------------------------------
-# Figure 4.4 & Figure 4.8
+# Figure 4.4 & Figure 4.7
 # Plots of distance error for all hindcasts + mean distance error
 # Last confirmed working 2022-01-13
 # -------------------------------------------------------------------------
@@ -911,7 +911,7 @@ for n, ax in enumerate(axs):
         )
 # Save figure
 fig.savefig(
-    path_figures + "Figure_4.8.eps",
+    path_figures + "Figure_4.7.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -932,10 +932,10 @@ tick_spacing = 25
 df = load_data(2009)
 
 # Subset last value
-df = df.sort_values("datetime").groupby("ensemble").tail(1)
+#df = df.sort_values("datetime").groupby("ensemble").tail(1)
 
 # Subset data
-# df = df[df['dur_obs'] == 96]
+df = df[df['dur_obs'] == 96]
 df1 = df[df["current"] == "cecom"]
 df2 = df[df["current"] == "glorys"]
 
@@ -1080,7 +1080,7 @@ plt.savefig(
 
 
 # -----------------------------------------------------------------------------
-# Figure 4.6 & 4.10
+# Figure 4.6 & 4.9
 # Plot RMSE & 24-hour RMSE
 # Last confirmed working 2022-01-13
 # -----------------------------------------------------------------------------
@@ -1198,201 +1198,12 @@ for n, ax in enumerate(axs):
         weight="bold",
     )
 fig.savefig(
-    path_figures + "Figure_4.10.eps", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_4.9.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
 # -----------------------------------------------------------------------------
-# Figures 4.7 & 4.11
-# Histogram plots of RMSE
-# Last confirmed working 2022-01-16
-# -----------------------------------------------------------------------------
-
-# Set tick spacing
-tick_spacing = 10
-
-# CECOM/GLORYS
-
-# Load data
-df = load_data(2009)
-
-# Calculate statistics
-stats = calculate_statistics(df)
-
-# Subset
-stats1 = stats[stats["current"] == "cecom"]
-stats2 = stats[stats["current"] == "glorys"]
-
-# Plot
-fig, axs = plt.subplots(
-    2, sharex=True, sharey=True, figsize=(6, 6), constrained_layout=True
-)
-axs[0].set(ylabel="Frequency")
-axs[0].grid(axis="x", ls="dotted")
-sns.histplot(
-    x="rmse",
-    data=stats1,
-    binwidth=5,
-    binrange=(0, 60),
-    color="grey",
-    edgecolor="black",
-    ax=axs[0],
-    label="CECOM",
-)
-axs[0].axvline(x=stats1.rmse.mean(), color="red", ls="--", lw=2.5)
-axs[1].set(xlabel="RMSE (km)", ylabel="Frequency")
-axs[1].grid(axis="x", ls="dotted")
-sns.histplot(
-    x="rmse",
-    data=stats2,
-    binwidth=5,
-    binrange=(0, 60),
-    color="grey",
-    edgecolor="black",
-    ax=axs[1],
-    label="GLORYS",
-)
-axs[1].axvline(x=stats2.rmse.mean(), color="lime", ls="--", lw=2.5)
-axs[1].xaxis.set_major_locator(mticker.MultipleLocator(tick_spacing))
-sns.despine()
-axs = axs.flat
-for n, ax in enumerate(axs):
-    ax.text(
-        -0.125,
-        -0.225,
-        "(" + string.ascii_lowercase[n] + ")",
-        transform=ax.transAxes,
-        size=24,
-        weight="bold",
-    )
-    if n == 0:
-        ax.text(
-            0.025,
-            0.925,
-            "CECOM",
-            transform=ax.transAxes,
-            size=20,
-            weight="bold",
-            ha="left",
-        )
-    if n == 1:
-        ax.text(
-            0.025,
-            0.925,
-            "GLORYS",
-            transform=ax.transAxes,
-            size=20,
-            weight="bold",
-            ha="left",
-        )
-# Save figure
-plt.savefig(
-    path_figures + "Figure_4.7.eps", dpi=dpi, transparent=False, bbox_inches="tight"
-)
-
-# CECOM/GLORYS/RIOPS
-
-# Load data
-df = load_data(2017)
-
-# Calculate statistics
-stats = calculate_statistics(df)
-
-# Subset
-stats1 = stats[stats["current"] == "cecom"]
-stats2 = stats[stats["current"] == "glorys"]
-stats3 = stats[stats["current"] == "riops"]
-
-# Plot
-fig, axs = plt.subplots(3, sharex=True, sharey=True, figsize=(6, 9))
-axs[0].set(ylabel="Frequency")
-axs[0].grid(axis="x", ls="dotted")
-sns.histplot(
-    x="rmse",
-    data=stats1,
-    binwidth=5,
-    binrange=(0, 60),
-    color="grey",
-    edgecolor="black",
-    ax=axs[0],
-    label="CECOM",
-)
-axs[0].axvline(x=stats1.rmse.mean(), color="red", ls="--", lw=2.5)
-axs[1].set(ylabel="Frequency")
-axs[1].grid(axis="x", ls="dotted")
-sns.histplot(
-    x="rmse",
-    data=stats2,
-    binwidth=5,
-    binrange=(0, 60),
-    color="grey",
-    edgecolor="black",
-    ax=axs[1],
-    label="GLORYS",
-)
-axs[1].axvline(x=stats2.rmse.mean(), color="lime", ls="--", lw=2.5)
-axs[2].set(xlabel="RMSE (km)", ylabel="Frequency")
-axs[2].grid(axis="x", ls="dotted")
-sns.histplot(
-    x="rmse",
-    data=stats3,
-    binwidth=5,
-    binrange=(0, 60),
-    color="grey",
-    edgecolor="black",
-    ax=axs[2],
-    label="GLORYS",
-)
-axs[2].axvline(x=stats3.rmse.mean(), color="blue", ls="--", lw=2.5)
-axs[2].xaxis.set_major_locator(mticker.MultipleLocator(tick_spacing))
-sns.despine()
-axs = axs.flat
-for n, ax in enumerate(axs):
-    ax.text(
-        -0.125,
-        -0.225,
-        "(" + string.ascii_lowercase[n] + ")",
-        transform=ax.transAxes,
-        size=24,
-        weight="bold",
-    )
-    if n == 0:
-        ax.text(
-            0.025,
-            0.925,
-            "CECOM",
-            transform=ax.transAxes,
-            size=20,
-            weight="bold",
-            ha="left",
-        )
-    if n == 1:
-        ax.text(
-            0.025,
-            0.925,
-            "GLORYS",
-            transform=ax.transAxes,
-            size=20,
-            weight="bold",
-            ha="left",
-        )
-    if n == 2:
-        ax.text(
-            0.025,
-            0.925,
-            "RIOPS",
-            transform=ax.transAxes,
-            size=20,
-            weight="bold",
-            ha="left",
-        )
-# Save figure
-plt.savefig(
-    path_figures + "Figure_4.11.eps", dpi=dpi, transparent=False, bbox_inches="tight"
-)
-
-# -----------------------------------------------------------------------------
-# Figure 4.9
+# Figure 4.8
 # Histograms of final and cumulative distance error
 # Last confirmed working 2022-01-16
 # -----------------------------------------------------------------------------
@@ -1406,7 +1217,8 @@ tick_spacing = 25
 df = load_data(2017)
 
 # Subset data
-df = df.sort_values("datetime").groupby("ensemble").tail(1)
+#df = df.sort_values("datetime").groupby("ensemble").tail(1)
+df = df[df['dur_obs'] == 96]
 
 df1 = df[df["current"] == "cecom"]
 df2 = df[df["current"] == "glorys"]
@@ -1498,7 +1310,7 @@ for n, ax in enumerate(axs):
             ha="right",
         )
 plt.savefig(
-    path_figures + "Figure_4.9abc.eps",
+    path_figures + "Figure_4.8abc.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -1591,14 +1403,14 @@ for n, ax in enumerate(axs):
             ha="right",
         )
 plt.savefig(
-    path_figures + "Figure_4.9def.eps",
+    path_figures + "Figure_4.8def.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
 )
 
 # -----------------------------------------------------------------------------
-# Figure 4.12
+# Figure 4.10
 # Boxplots of final and cumulative distance error vs season
 # Last confirmed working 2022-01-17
 # -----------------------------------------------------------------------------
@@ -1724,10 +1536,10 @@ for n, ax in enumerate(axs):
         size=24,
         weight="bold",
     )
-plt.savefig(path_figures + "Figure_4.12.eps", dpi=dpi, transparent=False)
+plt.savefig(path_figures + "Figure_4.10.eps", dpi=dpi, transparent=False)
 
 # -----------------------------------------------------------------------------
-# Figure 4.13
+# Figure 4.11
 # Scatterplot - Cumluative distance vs. Length
 # Last confirmed working 2022-01-17
 # -----------------------------------------------------------------------------
@@ -1774,12 +1586,12 @@ sns.despine()
 
 # Save figure
 fig.savefig(
-    path_figures + "Figure_4.13.eps", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_4.11.png", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
 # -----------------------------------------------------------------------------
-# Figure 4.14
+# Figure 4.12
 # Scatterplot of RMSE as a function of iceberg waterline length
 # Last confirmed working 2022-01-13
 # -----------------------------------------------------------------------------
@@ -1875,7 +1687,7 @@ for n, ax in enumerate(axs):
     )
 
 plt.savefig(
-    path_figures + "Figure_4.14.png",
+    path_figures + "Figure_4.12.png",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -1883,7 +1695,7 @@ plt.savefig(
 
 
 # -----------------------------------------------------------------------------
-# Figure 4.15
+# Figure 4.13
 # Scatterplot of RMSE as a function of starting latitude
 # Last confirmed working 2022-01-16
 # -----------------------------------------------------------------------------
@@ -1990,12 +1802,12 @@ for n, ax in enumerate(axs):
     )
 
 plt.savefig(
-    path_figures + "Figure_4.15.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_4.13.png", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
 # ----------------------------------------------------------------------------
-# Figure 4.16
+# Figure 4.14
 # 4 panel plot of CECOM/GLORYS 24-hour RMSE
 # Last confirmed working 2022-01-16
 # ----------------------------------------------------------------------------
@@ -2242,11 +2054,11 @@ for n, ax in enumerate(axs):
 fig.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap), ax=axs, shrink=0.8)
 
 # Save figure
-fig.savefig(path_figures + "Figure_4.16.png", dpi=dpi, transparent=False)
+fig.savefig(path_figures + "Figure_4.14.png", dpi=dpi, transparent=False)
 
 
 # ----------------------------------------------------------------------------
-# Figure 4.17
+# Figure 4.15
 # 6-panel plot of CECOM/GLORYS/RIOPS 24-hour RMSE
 # Last confirmed working 2022-01-16
 # ----------------------------------------------------------------------------
@@ -2575,11 +2387,11 @@ for n, ax in enumerate(axs):
 fig.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap), ax=axs, shrink=0.8)
 
 # Save figure
-fig.savefig(path_figures + "Figure_4.17.png", dpi=dpi, transparent=False)
+fig.savefig(path_figures + "Figure_4.15.png", dpi=dpi, transparent=False)
 
 
 # -----------------------------------------------------------------------------
-# Figure 4.18
+# Figure 4.16
 # Plot of distance error pairwise comparison delta for sensitivity analysis
 # Note: 12 subplots that use a custom color palette (omits blue)
 # Last confirmed working: 2022-01-17
@@ -2728,11 +2540,11 @@ for n, ax in enumerate(axs):
         weight="bold",
     )
 # Save figure
-fig.savefig(path_figures + "Figure_4.18.png", dpi=dpi, transparent=False)
+fig.savefig(path_figures + "Figure_4.16.png", dpi=dpi, transparent=False)
 
 
 # -----------------------------------------------------------------------------
-# Figures 4.19 - 4.28
+# Figures 4.17 - 4.26
 # Sensitivity analysis iceberg trajectory plots
 # Last confirmed working 2022-01-17
 # -----------------------------------------------------------------------------
@@ -2756,6 +2568,8 @@ variable_list = [
 
 # List of figure names
 figure_list = [
+    "Figure_4.17",
+    "Figure_4.18",
     "Figure_4.19",
     "Figure_4.20",
     "Figure_4.21",
@@ -2764,8 +2578,6 @@ figure_list = [
     "Figure_4.24",
     "Figure_4.25",
     "Figure_4.26",
-    "Figure_4.27",
-    "Figure_4.28",
 ]
 
 # Loop through each variable and produce a plot of all six iceberg trajectories
