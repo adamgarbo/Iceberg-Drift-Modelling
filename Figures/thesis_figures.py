@@ -239,7 +239,7 @@ for n, ax in enumerate(axs):  # Add figure annotations
 
 # Save figure
 plt.savefig(
-    path_figures + "Figure_2.1.png",
+    path_figures + "Figure_2.1.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -295,7 +295,7 @@ for n, ax in enumerate(axs):
     )
 # Save figure
 fig.savefig(
-    path_figures + "Figure_3.5.png",
+    path_figures + "Figure_3.5.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -383,7 +383,7 @@ for n, ax in enumerate(axs):
     )
 # Save figure
 fig.savefig(
-    path_figures + "Figure_3.6.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_3.6.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
@@ -422,7 +422,7 @@ bottom_bar = mpatches.Patch(color="grey", label="interpolations")
 ax.legend(loc=4, handles=[top_bar, bottom_bar])
 # Save figure
 fig.savefig(
-    path_figures + "Figure_3.7.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_3.7.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 # ----------------------------------------------------------------------------
@@ -485,7 +485,7 @@ ax.scatter(
 ax.legend()
 # Save figure
 plt.savefig(
-    path_figures + "Figure_3.8.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_3.8.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
@@ -543,7 +543,7 @@ ax.legend()
 
 # Save figure
 plt.savefig(
-    path_figures + "Figure_3.10.png", dpi=300, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_3.10.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 # -----------------------------------------------------------------------------
@@ -579,7 +579,7 @@ ax.yaxis.set_major_locator(mticker.MultipleLocator(250))
 sns.despine()
 # Save figure
 fig.savefig(
-    path_figures + "Figure_3.12.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_3.12.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 # -----------------------------------------------------------------------------
@@ -707,7 +707,7 @@ for n, ax in enumerate(axs):
     )
 # Save figure
 fig.savefig(
-    path_figures + "Figure_4.3.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_4.3.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 # -------------------------------------------------------------------------
@@ -798,7 +798,7 @@ for n, ax in enumerate(axs):
         )
 # Save figure
 fig.savefig(
-    path_figures + "Figure_4.4.png",
+    path_figures + "Figure_4.4.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -911,7 +911,7 @@ for n, ax in enumerate(axs):
         )
 # Save figure
 fig.savefig(
-    path_figures + "Figure_4.8.png",
+    path_figures + "Figure_4.8.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -1001,7 +1001,7 @@ for n, ax in enumerate(axs):
         )
 # Save figure
 plt.savefig(
-    path_figures + "Figure_4.5ab.png",
+    path_figures + "Figure_4.5ab.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -1072,7 +1072,7 @@ for n, ax in enumerate(axs):
         )
 # Save figure
 plt.savefig(
-    path_figures + "Figure_4.5cd.png",
+    path_figures + "Figure_4.5cd.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -1140,7 +1140,7 @@ for n, ax in enumerate(axs):
         weight="bold",
     )
 fig.savefig(
-    path_figures + "Figure_4.6.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_4.6.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
@@ -1198,7 +1198,7 @@ for n, ax in enumerate(axs):
         weight="bold",
     )
 fig.savefig(
-    path_figures + "Figure_4.10.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_4.10.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
@@ -1287,7 +1287,7 @@ for n, ax in enumerate(axs):
         )
 # Save figure
 plt.savefig(
-    path_figures + "Figure_4.7.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_4.7.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 # CECOM/GLORYS/RIOPS
@@ -1388,7 +1388,7 @@ for n, ax in enumerate(axs):
         )
 # Save figure
 plt.savefig(
-    path_figures + "Figure_4.11.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_4.11.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 # -----------------------------------------------------------------------------
@@ -1498,7 +1498,7 @@ for n, ax in enumerate(axs):
             ha="right",
         )
 plt.savefig(
-    path_figures + "Figure_4.9abc.png",
+    path_figures + "Figure_4.9abc.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -1591,7 +1591,7 @@ for n, ax in enumerate(axs):
             ha="right",
         )
 plt.savefig(
-    path_figures + "Figure_4.9def.png",
+    path_figures + "Figure_4.9def.eps",
     dpi=dpi,
     transparent=False,
     bbox_inches="tight",
@@ -1724,7 +1724,7 @@ for n, ax in enumerate(axs):
         size=24,
         weight="bold",
     )
-plt.savefig(path_figures + "Figure_4.12.png", dpi=dpi, transparent=False)
+plt.savefig(path_figures + "Figure_4.12.eps", dpi=dpi, transparent=False)
 
 # -----------------------------------------------------------------------------
 # Figure 4.13
@@ -1774,7 +1774,7 @@ sns.despine()
 
 # Save figure
 fig.savefig(
-    path_figures + "Figure_4.13.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_4.13.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
@@ -2976,7 +2976,7 @@ def plot_sensitivity_maps(variable, figure_name):
         )
     # Save figure
     fig.savefig(
-        path_figures + "%s.png" % figure_name,
+        path_figures + "%s.eps" % figure_name,
         dpi=dpi,
         transparent=False,
         bbox_inches="tight",
@@ -3085,7 +3085,7 @@ cbar.set_label("Speed ($\mathrm{km h^{-1}}$)")
 
 # Save figure
 fig.savefig(
-    path_figures + "Figure_5.1.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_5.1.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
@@ -3188,7 +3188,7 @@ for n, ax in enumerate(axs):
     )
 
 plt.savefig(
-    path_figures + "Figure_5.2.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_5.2.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
@@ -3237,7 +3237,6 @@ df3 = df[df["current"] == "riops"]
 df3["segment"] = df3["branch"].str.split("_").str[0]
 df3["ensemble"] = df3["id"] + "_" + df3["segment"]
 
-
 # Pairwise comparison
 cecom = df1[["datetime", "ensemble", "dur_obs", "dist_error"]]
 glorys = df2[["datetime", "ensemble", "dist_error"]]
@@ -3253,23 +3252,23 @@ merge2["delta_CG"] = merge2["dist_error_x"] - merge2["dist_error_y"]
 merge2["delta_CR"] = merge2["dist_error_x"] - merge2["dist_error"]
 merge2["delta_GR"] = merge2["dist_error_y"] - merge2["dist_error"]
 
-
 # Plot
 fig, axs = plt.subplots(1, 3, sharey=True, figsize=(15, 5), constrained_layout=True)
 axs[0].set(xlabel="Hindcast Duration (hours)", ylabel="Distance error (km)")
 axs[0].set(box_aspect=1)
 axs[0].xaxis.set_major_locator(mticker.MultipleLocator(tick_spacing))
-for label, group in merge1.groupby(["ensemble"]):
-    sns.lineplot(
-        x="dur_obs",
-        y="delta",
-        data=group,
-        color="grey",
-        alpha=0.75,
-        lw=1,
-        ci=None,
-        ax=axs[0],
-    )
+sns.set_palette("turbo", merge1["ensemble"].nunique())
+sns.lineplot(
+    x="dur_obs",
+    y="delta",
+    data=merge1,
+    hue="ensemble",
+    alpha=0.75,
+    lw=1,
+    ci=None,
+    ax=axs[0],
+    legend = False,
+)
 axs[0].axhline(0, ls="-", color="black", alpha=0.75, zorder=10)
 axs[1].set(
     xlabel="Hindcast Duration (hours)",
@@ -3288,33 +3287,34 @@ axs[1].annotate(
     va="center",
     ha="center",
 )
-for label, group in merge2.groupby(["ensemble"]):
-    sns.lineplot(
-        x="dur_obs",
-        y="delta_CR",
-        data=group,
-        color="grey",
-        alpha=0.75,
-        lw=1,
-        ci=None,
-        ax=axs[1],
-    )
+sns.set_palette("turbo", merge2["ensemble"].nunique())
+sns.lineplot(
+    x="dur_obs",
+    y="delta_CR",
+    data=merge2,
+    hue="ensemble",
+    alpha=0.75,
+    lw=1,
+    ci=None,
+    ax=axs[1],
+    legend = False,
+)
 axs[1].axhline(0, ls="-", color="black", alpha=0.75, zorder=10)
 axs[1].yaxis.set_tick_params(labelleft=True)
 axs[2].set(xlabel="Hindcast Duration (hours)")
 axs[2].set(box_aspect=1)
 axs[2].xaxis.set_major_locator(mticker.MultipleLocator(tick_spacing))
-for label, group in merge2.groupby(["ensemble"]):
-    sns.lineplot(
-        x="dur_obs",
-        y="delta_GR",
-        data=group,
-        color="grey",
-        alpha=0.75,
-        lw=1,
-        ci=None,
-        ax=axs[2],
-    )
+sns.lineplot(
+    x="dur_obs",
+    y="delta_GR",
+    data=merge2,
+    hue="ensemble",
+    alpha=0.75,
+    lw=1,
+    ci=None,
+    ax=axs[2],
+    legend = False,
+)
 axs[2].axhline(0, ls="-", color="black", alpha=0.75, zorder=10)
 axs[2].yaxis.set_tick_params(labelleft=True)
 sns.despine()
@@ -3329,70 +3329,70 @@ for n, ax in enumerate(axs):
     )
     if n == 0:
         ax.text(
-            0.05,
-            0.925,
-            "GLORYS",
+            0.03,
+            0.95,
+            "GLORYS better",
+            #"$\mathregular{GLORYS_{error}}$",
             transform=ax.transAxes,
-            size=20,
+            size=16,
             weight="bold",
             ha="left",
-            color="lime",
         )
         ax.text(
-            0.05,
-            0.05,
-            "CECOM",
+            0.03,
+            0.03,
+            "CECOM better",
+            #"$\mathregular{CECOM_{error}}$",
             transform=ax.transAxes,
-            size=20,
+            size=16,
             weight="bold",
             ha="left",
-            color="red",
         )
     if n == 1:
         ax.text(
-            0.05,
-            0.925,
-            "RIOPS",
+            0.03,
+            0.95,
+            "RIOPS better",
+            #"$\mathregular{RIOPS_{error}}$",
             transform=ax.transAxes,
-            size=20,
+            size=16,
             weight="bold",
             ha="left",
-            color="blue",
         )
         ax.text(
-            0.05,
-            0.05,
-            "CECOM",
+            0.03,
+            0.03,
+            "CECOM better",
+            #"$\mathregular{CECOM_{error}}$",
             transform=ax.transAxes,
-            size=20,
+            size=16,
             weight="bold",
             ha="left",
-            color="red",
         )
     if n == 2:
         ax.text(
-            0.05,
-            0.925,
-            "GLORYS",
+            0.03,
+            0.95,
+            "GLORYS better",
+            #"$\mathregular{GLORYS_{error}}$",
             transform=ax.transAxes,
-            size=20,
+            size=16,
             weight="bold",
             ha="left",
-            color="lime",
         )
         ax.text(
-            0.05,
-            0.05,
-            "RIOPS",
+            0.03,
+            0.03,
+            "RIOPS better",
+            #"$\mathregular{RIOPS_{error}}$",
             transform=ax.transAxes,
-            size=20,
+            size=16,
             weight="bold",
             ha="left",
-            color="blue",
         )
 # Save figure
 fig.savefig(
-    path_figures + "Figure_5.3.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_5.3_test.png", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
@@ -3488,7 +3488,7 @@ ax.text(
 )
 # Save figure
 plt.savefig(
-    path_figures + "Figure_5.4a.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_5.4a.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
@@ -3570,7 +3570,7 @@ fig.autofmt_xdate(rotation=45)
 sns.despine()
 # Save figure
 fig.savefig(
-    path_figures + "Figure_5.4b2.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_5.4b2.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
 
 
@@ -3673,5 +3673,169 @@ for n, ax in enumerate(axs):
     )
 # Save figure
 fig.savefig(
-    path_figures + "Figure_5.5.png", dpi=dpi, transparent=False, bbox_inches="tight"
+    path_figures + "Figure_5.5.eps", dpi=dpi, transparent=False, bbox_inches="tight"
 )
+
+# ----------------------------------------------------------------------------
+# Appendix B
+# Batch plot model output maps using a distance grid instead of lat/lon
+# Last confirmed working 2022-01-18 
+# ----------------------------------------------------------------------------
+
+# Specify path to model outputs as either:
+path_input = path_data + "output/validation/error/2009-2016/"
+# or:
+path_input = path_data + "output/validation/error/2017-2019/"
+
+# Specify path to output figures
+path_figures = path_data + "output/validation/figures/appendix/"
+
+# Find all files in folder
+files = glob.glob(path_input + "*.csv")
+
+# Iterate through each error file and create map
+for file in files:
+
+    fname = os.path.splitext(os.path.basename(file))[0]
+
+    # Plot error
+    plot_distance_maps(fname, path_input, path_figures)
+
+    # Debug
+    break
+
+
+def plot_distance_maps(filename, path_input, path_figures):
+    """
+
+    Produce map of modelled and observed iceberg trajectories as distance
+    measurements instead of latitude/longitude coordiantes. 
+    Distances are specific to relative UTM zone.
+    
+    Parameters
+    ----------
+    filename : str
+        Filename of model ouput.
+    path_input : str
+        Path to model outputs.
+    path_figures : str
+        Path to output figures.
+
+    Returns
+    -------
+    None.
+
+    """
+
+    # Split filename
+    year, beacon, interval = filename.split("_")
+    beacon_id = "%s_%s_%s" % (year, beacon, interval)
+
+    # Load model output iceberg trajectory
+    df = pd.read_csv(path_input + filename + ".csv", index_col=False)
+
+    # Change column to string
+    df["branch"] = df["branch"].astype(str)
+
+    # Add ocean current model column
+    df["current"] = df["branch"].str.split("_").str[1]
+
+    # Get final distance error
+    distance_error = df.groupby("current")["dist_error"].tail(1)
+    #print(distance_error)
+
+    # Calculate RMSE
+    stats_track = pd.DataFrame()
+    stats_track = df.groupby(['ensemble','current'])['dist_error'].apply(rmse).reset_index(name='rmse')
+
+    # Adjust labels according to number of unique environmental input data sources
+    if df["branch"].nunique() == 1:
+        label1 = ["Observed", "RIOPS"]
+    if df["branch"].nunique() == 2:
+        label1 = ["Observed", "CECOM", "GLORYS"]
+        dashes = [(5, 1), (1, 1)]
+        #title = 
+    elif df["branch"].nunique() == 3:
+        label1 = ["Observed", "CECOM", "GLORYS", "RIOPS"]
+        dashes = [(5, 1), (1, 1), (3, 1, 1, 1)]
+
+    # Plot
+    fig, ax = plt.subplots(figsize=(10, 10))
+    ax.grid(ls="dotted")
+    ax.set_adjustable("datalim")
+    ax.set_aspect("equal")
+    ax.set(xlabel="East (km)", ylabel="North (km)")
+    if df["branch"].nunique() == 2:
+        ax.text(x=0.125, y=0.95, s=f"ID: {beacon}_{interval} Start: {df.datetime.min()} Duration: {df.dur_obs.max():.0f} hrs", fontsize=18, fontweight="bold", ha="left", transform=fig.transFigure)
+        ax.text(x=0.125, y=0.92, s=f"{'DE (km):':<15} CECOM: {distance_error.iloc[0]:.1f} GLORYS: {distance_error.iloc[1]:.1f}", fontsize=18, ha="left", transform=fig.transFigure)
+        ax.text(x=0.125, y=0.89, s=f"{'RMSE (km):':<12} CECOM: {stats_track.rmse.iloc[0]:.1f} GLORYS: {stats_track.rmse.iloc[1]:.1f}", fontsize=18, ha="left", transform=fig.transFigure)
+
+    elif df["branch"].nunique() == 3:
+        ax.text(x=0.125, y=0.95, s=f"ID: {beacon}_{interval} Start: {df.datetime.min()} Duration: {df.dur_obs.max():.0f} hrs", fontsize=18, fontweight="bold", ha="left", transform=fig.transFigure)
+        ax.text(x=0.125, y=0.92, s=f"{'DE (km):':<15} CECOM: {distance_error.iloc[0]:.1f} GLORYS: {distance_error.iloc[1]:.1f} RIOPS: {distance_error.iloc[2]:.1f}", fontsize=18, ha="left", transform=fig.transFigure)
+        ax.text(x=0.125, y=0.89, s=f"{'RMSE (km):':<12} CECOM: {stats_track.rmse.iloc[0]:.1f} GLORYS: {stats_track.rmse.iloc[1]:.1f} RIOPS: {stats_track.rmse.iloc[2]:.1f}", fontsize=18, ha="left", transform=fig.transFigure)
+
+        
+    sns.lineplot(
+        x="x_obs",
+        y="y_obs",
+        data=df,
+        color="black",
+        label="Observed",
+        ci=None,
+        sort=False,
+    )
+    sns.lineplot(
+        x="x_model",
+        y="y_model",
+        data=df,
+        hue="branch",
+        style="branch",
+        dashes=dashes,
+        ci=None,
+        sort=False,
+    )
+    ax.legend(labels=label1)
+    fig.savefig(
+        path_figures + "map_%s.eps" % filename,
+        dpi=dpi,
+        transparent=False,
+        bbox_inches="tight",
+        format='eps',
+    )
+    plt.close()
+    
+    
+    
+    
+    
+'''
+    
+    ax.text(
+        -0.125,
+        -0.175,
+        "(" + string.ascii_lowercase[n] + ")",
+        transform=ax.transAxes,
+        size=24,
+        weight="bold",
+    )
+  
+            
+        f"The comedian is {comedian['name']}, aged {comedian['age']}."
+        
+        ax.text(x=0.125, y=0.945, s="ID: %s-%s Start: %s Dur: %0.0f hrs" % (beacon, interval, df["datetime"].min(), df["dur_obs"].max()), fontsize=18, fontweight="bold", ha="left", transform=fig.transFigure)
+        #ax.text(x=0.125, y=0.89, s="DE (km): CECOM: %0.1f GLORYS: %0.1f RIOPS: %0.1f\nRMSE (km): CECOM: %0.1f GLORYS: %0.1f RIOPS: %0.1f" % (distance_error.iloc[0], distance_error.iloc[1], distance_error.iloc[2],stats_track["rmse"].iloc[0],stats_track["rmse"].iloc[1],stats_track["rmse"].iloc[2]), fontsize=18, ha="left", transform=fig.transFigure)
+        ax.text(x=0.125, y=0.89, s=f"{'DE (km): ' + distance_error.iloc[0]:<10} GLORYS: {distance_error.iloc[1]}", fontsize=18, ha="left", transform=fig.transFigure)
+        #plt.subplots_adjust(top=0.8, wspace=0.3)
+test = 1
+
+
+        ax.set_title(
+            r"$\bf{%s-%s %s %s hours\nDE (km):      CECOM: %0.1f GLORYS: %0.1f RIOPS: %0.1f\nRMSE (km): CECOM: %0.1f GLORYS: %0.1f RIOPS: %0.1f}$"
+            % (beacon, interval, df["datetime"].min(), df["dur_obs"].max(), distance_error.iloc[0], distance_error.iloc[1], distance_error.iloc[2],
+               stats_track["rmse"].iloc[0],stats_track["rmse"].iloc[1],stats_track["rmse"].iloc[2]),
+            loc="left",
+            fontsize=18,
+            #fontweight="bold",
+        )     
+'''
