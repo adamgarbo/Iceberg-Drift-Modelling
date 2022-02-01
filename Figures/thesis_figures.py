@@ -359,7 +359,7 @@ sns.lineplot(
     color="blue",
     ax=axs[1],
 )
-axs[1].set(xlabel="Year", ylabel="Standard Deviation (°C)")
+axs[1].set(xlabel="Date", ylabel="Standard Deviation (°C)")
 axs[1].annotate(
     "Transition to water",
     xy=(datetime.datetime(2011, 9, 12, 12, 0), 0.1),
@@ -2051,10 +2051,12 @@ for n, ax in enumerate(axs):
         )
 
 # Add colour bar
-fig.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap), ax=axs, shrink=0.8)
+cbar = fig.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap), ax=axs, shrink=0.8)
+cbar.set_label("RMSE (km)")
+
 
 # Save figure
-fig.savefig(path_figures + "Figure_4.14.png", dpi=dpi, transparent=False)
+fig.savefig(path_figures + "Figure_4.14_new.png", dpi=dpi, transparent=False)
 
 
 # ----------------------------------------------------------------------------
@@ -2384,10 +2386,11 @@ for n, ax in enumerate(axs):
             ha="right",
         )
 # Add colour bar
-fig.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap), ax=axs, shrink=0.8)
+cbar = fig.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap), ax=axs, shrink=0.8)
+cbar.set_label("RMSE (km)")
 
 # Save figure
-fig.savefig(path_figures + "Figure_4.15.png", dpi=dpi, transparent=False)
+fig.savefig(path_figures + "Figure_4.15_new.png", dpi=dpi, transparent=False)
 
 
 # -----------------------------------------------------------------------------
@@ -3436,7 +3439,7 @@ fig, axs = plt.subplots(1, 2, figsize=(12, 4), constrained_layout=True)
 sns.boxplot(x="parameter", y="dist_csum_model", data=df1, ax=axs[0])
 plt.setp(axs[0].artists, edgecolor="k", facecolor="w")
 plt.setp(axs[0].lines, color="k")
-axs[0].set(xlabel="Length Modifier", ylabel="Cumulative Distance (km)")
+axs[0].set(xlabel="Change in Keel Depth (%)", ylabel="Cumulative Distance (km)")
 
 sns.lineplot(
     x="datetime", y="current_speed_1", data=df2, label="0-10 m", color="red", ax=axs[1]
