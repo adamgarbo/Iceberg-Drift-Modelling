@@ -3619,38 +3619,3 @@ def plot_distance_maps(filename, path_input, path_figures):
         format='eps',
     )
     plt.close()
-    
-    
-    
-    
-    
-'''
-    
-    ax.text(
-        -0.125,
-        -0.175,
-        "(" + string.ascii_lowercase[n] + ")",
-        transform=ax.transAxes,
-        size=24,
-        weight="bold",
-    )
-  
-            
-        f"The comedian is {comedian['name']}, aged {comedian['age']}."
-        
-        ax.text(x=0.125, y=0.945, s="ID: %s-%s Start: %s Dur: %0.0f hrs" % (beacon, interval, df["datetime"].min(), df["dur_obs"].max()), fontsize=18, fontweight="bold", ha="left", transform=fig.transFigure)
-        #ax.text(x=0.125, y=0.89, s="DE (km): CECOM: %0.1f GLORYS: %0.1f RIOPS: %0.1f\nRMSE (km): CECOM: %0.1f GLORYS: %0.1f RIOPS: %0.1f" % (distance_error.iloc[0], distance_error.iloc[1], distance_error.iloc[2],stats_track["rmse"].iloc[0],stats_track["rmse"].iloc[1],stats_track["rmse"].iloc[2]), fontsize=18, ha="left", transform=fig.transFigure)
-        ax.text(x=0.125, y=0.89, s=f"{'DE (km): ' + distance_error.iloc[0]:<10} GLORYS: {distance_error.iloc[1]}", fontsize=18, ha="left", transform=fig.transFigure)
-        #plt.subplots_adjust(top=0.8, wspace=0.3)
-test = 1
-
-
-        ax.set_title(
-            r"$\bf{%s-%s %s %s hours\nDE (km):      CECOM: %0.1f GLORYS: %0.1f RIOPS: %0.1f\nRMSE (km): CECOM: %0.1f GLORYS: %0.1f RIOPS: %0.1f}$"
-            % (beacon, interval, df["datetime"].min(), df["dur_obs"].max(), distance_error.iloc[0], distance_error.iloc[1], distance_error.iloc[2],
-               stats_track["rmse"].iloc[0],stats_track["rmse"].iloc[1],stats_track["rmse"].iloc[2]),
-            loc="left",
-            fontsize=18,
-            #fontweight="bold",
-        )     
-'''
