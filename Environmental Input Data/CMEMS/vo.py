@@ -27,8 +27,8 @@ logfile = 'logfile.txt'
 # Copernicus Marine API Key - Login Credentials 
 # To create an account reach: http://marine.copernicus.eu/services-portfolio/register-now/.
 # If already created but forgotten reach: http://marine.copernicus.eu/faq/forgotten-password/?idpage=169
-username_cmems = 'agarbo'
-password_cmems = 'sC#SrdD8JiZB9M_'
+username_cmems = 'username'
+password_cmems = 'password'
  
 # Proxy Configuration
 # Please replace "False" by "True" if you use a proxy to connect to internet and fill in the below variables.
