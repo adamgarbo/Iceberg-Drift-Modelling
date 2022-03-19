@@ -109,7 +109,7 @@ def cv(values):
 # Calculate statistics for Figures: 4.6, 4.10
 def calculate_statistics(df):
     """
-    
+
 
     Parameters
     ----------
@@ -122,8 +122,7 @@ def calculate_statistics(df):
         DESCRIPTION.
 
     """
-    
-    
+
     # Create an empty dataframe
     stats = pd.DataFrame()
     stats = (
@@ -155,13 +154,11 @@ def calculate_statistics(df):
         df.groupby(["dur_obs", "current"]).size().reset_index(name="count")["count"]
     )
     stats = stats.round({"mae": 2, "rmse": 2, "sd": 2, "cv": 2, "scaled_error": 2})
-    
+
     # Optional: Output to CSV
-    #stats.to_csv(path_data + "output/validation/statistics/stats.csv", index=False)
+    # stats.to_csv(path_data + "output/validation/statistics/stats.csv", index=False)
 
     return stats
-
-
 
 
 # -----------------------------------------------------------------------------
@@ -170,9 +167,11 @@ def calculate_statistics(df):
 
 
 # Subset statistics dataframe to look at specific time periods (e.g. daily)
-stats_subset = stats[stats['dur_obs'].isin([24,48,72,96])]
-pivoted_stats = stats.pivot('dur_obs', 'current').reset_index()
-pivoted_stats.to_csv(path_data + "output/validation/statistics/pivoted_stats.csv" , index=False)
+stats_subset = stats[stats["dur_obs"].isin([24, 48, 72, 96])]
+pivoted_stats = stats.pivot("dur_obs", "current").reset_index()
+pivoted_stats.to_csv(
+    path_data + "output/validation/statistics/pivoted_stats.csv", index=False
+)
 
 
 # Load data
@@ -185,11 +184,17 @@ calculate_statistics(df1)
 
 # Create an empty dataframe
 stats_track = pd.DataFrame()
-stats_track = df.groupby(['ensemble','current'])['dist_error'].apply(rmse).reset_index(name='rmse')
+stats_track = (
+    df.groupby(["ensemble", "current"])["dist_error"]
+    .apply(rmse)
+    .reset_index(name="rmse")
+)
 # Pivot data
-pivoted_stats_track = stats_track.pivot('ensemble', 'current').reset_index()
+pivoted_stats_track = stats_track.pivot("ensemble", "current").reset_index()
 # Output to CSV
-pivoted_stats_track.to_csv(path_data + "output/validation/statistics/pivoted_stats_track.csv" , index=False)
+pivoted_stats_track.to_csv(
+    path_data + "output/validation/statistics/pivoted_stats_track.csv", index=False
+)
 
 
 # -----------------------------------------------------------------------------
@@ -221,9 +226,10 @@ for file in files:
     # Debug: Iterate only once through loop
     break
 
+
 def calculate_error(filename, path_observed, path_modelled, path_error):
     """
-    
+
     Calculate distance error metrics betweeb observed and modelled iceberg tracks.
 
     Parameters
@@ -272,7 +278,7 @@ def calculate_error(filename, path_observed, path_modelled, path_error):
             "longitude",
             "latitude",
             "length",
-            #"keel",
+            # "keel",
             "u_current",
             "v_current",
             "u_wind",
@@ -534,11 +540,12 @@ with open(path_output, "w") as outfile:
             # Block copy rest of file from input to output without parsing
             shutil.copyfileobj(infile, outfile)
             print(file + " has been imported.")
-            
-            
+
+
 # -----------------------------------------------------------------------------
-# Load model error outputs 
+# Load model error outputs
 # -----------------------------------------------------------------------------
+
 
 def load_data(year):
     """
@@ -582,7 +589,6 @@ def load_data(year):
     return df
 
 
-            
 # -----------------------------------------------------------------------------
 # Plot map of modelled and observed iceberg trajectories
 # Note: Not used in thesis.
@@ -610,6 +616,7 @@ for file in files:
 
     # Debug: Iterate only once through loop
     break
+
 
 def plot_map(beacon_id, error):
     """
@@ -698,7 +705,7 @@ def plot_map(beacon_id, error):
         transparent=False,
         bbox_inches="tight",
     )
-    
+
     # Close plot
     plt.close()
 
@@ -735,7 +742,7 @@ def plot_error(filename, path_input, path_output):
     """
 
     Produce figures of calculated error metrics.
-    
+
     Parameters
     ----------
     filename : str
@@ -752,8 +759,8 @@ def plot_error(filename, path_input, path_output):
     """
 
     # Interval between x-axis ticks
-    tick_spacing = 12 
-    
+    tick_spacing = 12
+
     # Split filename
     year, beacon, interval = filename.split("_")
     beacon_id = "%s_%s_%s" % (year, beacon, interval)
@@ -831,7 +838,7 @@ def plot_error(filename, path_input, path_output):
     ax.grid(ls="dotted")
     ax.xaxis.set_major_locator(mticker.MultipleLocator(tick_spacing))
     sns.lineplot(x="dur_obs", y="dist_error", hue="ensemble", data=df, ci=None)
-    ax.legend(loc='center left', bbox_to_anchor=(1.0, 0.5), labels=label2)
+    ax.legend(loc="center left", bbox_to_anchor=(1.0, 0.5), labels=label2)
     sns.despine()
     fig.savefig(
         path_figures + "02_distance_error_%s.png" % beacon_id,
@@ -851,7 +858,7 @@ def plot_error(filename, path_input, path_output):
     sns.lineplot(
         x="dur_obs", y="scaled_error", hue="ensemble", data=df, markers=True, ci=None
     )
-    ax.legend(loc='center left', bbox_to_anchor=(1.0, 0.5), labels=label2)
+    ax.legend(loc="center left", bbox_to_anchor=(1.0, 0.5), labels=label2)
     sns.despine()
     fig.savefig(
         path_figures + "03_scaled_error_%s.png" % beacon_id,
@@ -877,7 +884,7 @@ def plot_error(filename, path_input, path_output):
         ci=None,
     )
     sns.lineplot(x="dur_obs", y="dist_csum_model", data=df, hue="ensemble", ci=None)
-    ax.legend(loc='center left', bbox_to_anchor=(1.0, 0.5), labels=label1)
+    ax.legend(loc="center left", bbox_to_anchor=(1.0, 0.5), labels=label1)
     sns.despine()
     fig.savefig(
         path_figures + "04_distance_csum_%s.png" % beacon_id,
@@ -898,7 +905,7 @@ def plot_error(filename, path_input, path_output):
         x="dur_obs", y="speed_obs", data=df, color="black", label="Observed", ci=None
     )
     sns.lineplot(x="dur_obs", y="speed_model", hue="ensemble", data=df, ci=None)
-    ax.legend(loc='center left', bbox_to_anchor=(1.0, 0.5),labels=label1)
+    ax.legend(loc="center left", bbox_to_anchor=(1.0, 0.5), labels=label1)
     sns.despine()
     fig.savefig(
         path_figures + "05_speed_%s.png" % beacon_id,
@@ -916,7 +923,7 @@ def plot_error(filename, path_input, path_output):
     ax.grid(ls="dotted")
     ax.xaxis.set_major_locator(mticker.MultipleLocator(tick_spacing))
     sns.lineplot(x="dur_obs", y="speed_error", data=df, hue="ensemble", ci=None)
-    ax.legend(loc='center left', bbox_to_anchor=(1.0, 0.5), labels=label2)
+    ax.legend(loc="center left", bbox_to_anchor=(1.0, 0.5), labels=label2)
     sns.despine()
     fig.savefig(
         path_figures + "06_speed_error_%s.png" % beacon_id,
@@ -970,7 +977,7 @@ def plot_error(filename, path_input, path_output):
 # ----------------------------------------------------------------------------
 # Batch plot model output maps using a distance grid instead of lat/lon
 # Note: These plots are contained in Appendix B
-# Last confirmed working 2022-01-18 
+# Last confirmed working 2022-01-18
 # ----------------------------------------------------------------------------
 
 # Specify path to model outputs as either:
@@ -1000,9 +1007,9 @@ def plot_distance_maps(filename, path_input, path_figures):
     """
 
     Produce map of modelled and observed iceberg trajectories as distance
-    measurements instead of latitude/longitude coordiantes. 
+    measurements instead of latitude/longitude coordiantes.
     Distances are specific to relative UTM zone.
-    
+
     Parameters
     ----------
     filename : str
@@ -1038,7 +1045,6 @@ def plot_distance_maps(filename, path_input, path_figures):
     elif df["branch"].nunique() == 3:
         label1 = ["Observed", "CECOM", "GLORYS", "RIOPS"]
         label2 = ["CECOM", "GLORYS", "RIOPS"]
-
 
     # Plot
     fig, ax = plt.subplots(figsize=(10, 10))
@@ -1083,7 +1089,7 @@ def plot_distance_maps(filename, path_input, path_figures):
 
 
 # ----------------------------------------------------------------------------
-# Batch plot maps of hindcast simulations of iceberg drift on a regular 
+# Batch plot maps of hindcast simulations of iceberg drift on a regular
 # latitude/longitude grid
 # Last confirmed working 2022-01-18
 # ----------------------------------------------------------------------------
@@ -1104,7 +1110,7 @@ for file in files:
 
     fname = os.path.splitext(os.path.basename(file))[0]
 
-    # Plot modelled hindcasts 
+    # Plot modelled hindcasts
     plot_hindcast_maps(fname, path_input, path_figures)
 
     # Debug: Iterate through loop only once
@@ -1115,7 +1121,7 @@ def plot_hindcast_maps(filename, path_input, path_figures):
     """
 
     Produce map of modelled and observed iceberg trajectories using a regular
-    latitude/longitude grid and with coastal shapefile. 
+    latitude/longitude grid and with coastal shapefile.
     Note: Cartopy's orthographic map projection is used.
 
     Parameters

@@ -38,9 +38,7 @@ df["BEACON_ID"] = df["BEACON_ID"] + ".csv"
 subset = df["BEACON_ID"].unique()
 
 # Recursively search through all files to locate
-files = sorted(
-    glob.glob(path_input + "/**/standardized_data/*.csv", recursive=True)
-)
+files = sorted(glob.glob(path_input + "/**/standardized_data/*.csv", recursive=True))
 
 # Copy all files to output path
 for file in files:
@@ -57,7 +55,7 @@ datetime = time.strftime("%Y%m%d")
 filename = "output" + datetime + ".csv"
 
 # Change accordingly
-input_path = "/Volumes/data/nais_iceberg_drift_model/input/iceberg_database/raw"  
+input_path = "/Volumes/data/nais_iceberg_drift_model/input/iceberg_database/raw"
 output_path = "/Volumes/data/nais_iceberg_drift_model/input/iceberg_database/merged/raw.csv"  # + filename
 files = sorted(glob.glob(input_path + "/*.csv"))
 print(files)

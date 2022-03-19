@@ -57,8 +57,8 @@ sns.set_palette(colour)
 dpi = 500
 
 # -----------------------------------------------------------------------------
-# Option 1) Create individual maps for each iceberg contained in the iceberg  
-# tracking beacon database 
+# Option 1) Create individual maps for each iceberg contained in the iceberg
+# tracking beacon database
 # Requires: Compiled CSV file of the iceberg beacon database
 # -----------------------------------------------------------------------------
 
@@ -101,8 +101,8 @@ for label, group in df.groupby(["beacon_type", "beacon_id"]):
         )
     )
     ax.add_feature(coast)
-    
-    #ax.gridlines(draw_labels=True, color="black", alpha=0.5, linestyle="-")
+
+    # ax.gridlines(draw_labels=True, color="black", alpha=0.5, linestyle="-")
     gl = ax.gridlines(
         draw_labels=True,
         color="black",
@@ -122,7 +122,7 @@ for label, group in df.groupby(["beacon_type", "beacon_id"]):
         lw=2,
         ci=None,
         sort=False,
-        estimator=None, 
+        estimator=None,
         transform=ccrs.PlateCarree(),
         ax=ax,
     )
@@ -148,14 +148,14 @@ for label, group in df.groupby(["beacon_type", "beacon_id"]):
         transparent=False,
         bbox_inches="tight",
     )
-    
+
     break
     # Close plot
     plt.close()
 
 # -----------------------------------------------------------------------------
-# Option 2) Plot trajectory analysis for each iceberg contained in the iceberg  
-# tracking beacon database 
+# Option 2) Plot trajectory analysis for each iceberg contained in the iceberg
+# tracking beacon database
 # Requires: Compiled CSV file of the iceberg beacon database
 # -----------------------------------------------------------------------------
 
@@ -184,7 +184,7 @@ df = df[df.set_index(["beacon_id"]).index.isin(subset.set_index(["beacon_id"]).i
 
 # Initialize pyproj with appropriate ellipsoid
 geodesic = pyproj.Geod(ellps="WGS84")
-    
+
 for label, group in df.groupby(["beacon_type", "beacon_id"]):
 
     # Calculate forward azimuth and Great Circle distance between successive beacon positions
@@ -333,7 +333,7 @@ for label, group in df.groupby(["beacon_type", "beacon_id"]):
 # ----------------------------------------------------------------------------
 # Option 3) Plot trajectory analysis for each iceberg selected for use in the
 # validation study of the NAIS iceberg drift model
-# Requires: A folder of individual raw iceberg tracjectories extracted from the 
+# Requires: A folder of individual raw iceberg tracjectories extracted from the
 # iceberg tracking beacon database
 # -----------------------------------------------------------------------------
 
@@ -352,7 +352,7 @@ for file in files:
 
     # Plot analysis figures
     plot_analysis(file)
-    
+
     # Debug: Stop loop after one iteration
     break
 
@@ -367,14 +367,14 @@ def plot_analysis(filename):
         2) Speed (m/s))
         3) Distance (km)
         4) Temperature:
-             Ta = Air temperature 
+             Ta = Air temperature
              Ti = Internal temperature
              Ts = Sea surface temperature
 
     Parameters
     ----------
     filename : str
-        Input CSV of raw iceberg tracjectory extracted from the iceberg 
+        Input CSV of raw iceberg tracjectory extracted from the iceberg
         tracking beacon database.
 
     Returns
@@ -432,7 +432,7 @@ def plot_analysis(filename):
         projection=ccrs.Orthographic(
             ((df["longitude"].min() + df["longitude"].max()) / 2),
             (df["latitude"].min() + df["latitude"].max()) / 2,
-        )
+        ),
     )
     ax.add_feature(coast)
     gl = ax.gridlines(
@@ -456,7 +456,7 @@ def plot_analysis(filename):
         lw=2,
         ci=None,
         sort=False,
-        estimator=None, 
+        estimator=None,
         transform=ccrs.PlateCarree(),
         ax=ax,
     )
