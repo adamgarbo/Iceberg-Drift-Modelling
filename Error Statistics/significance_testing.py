@@ -24,7 +24,7 @@ import pandas as pd
 # Path to data
 path_data = "/Volumes/GoogleDrive/My Drive/University of Ottawa/Thesis/NAIS Iceberg Drift Model/"
 
-/Volumes/GoogleDrive/My Drive/University of Ottawa/Thesis/NAIS Iceberg Drift Model/output/validation/merged/error_2009.csv
+path_data = "/Users/adam/My Drive/University of Ottawa/Thesis/NAIS Iceberg Drift Model/"
 
 # -----------------------------------------------------------------------------
 # Load data
@@ -82,7 +82,8 @@ def load_data(year):
 df = load_data(2017)
 
 # Subset data
-#df = df[df['dur_obs'] == 96] 
+df = df[df['dur_obs'] == 96] 
+
 # Get final distance error
 df = df.groupby("ensemble").tail(1)
 
@@ -97,8 +98,8 @@ df3 = df[df["current"] == "riops"]
 stats.shapiro(df1["dist_csum_obs"])
 
 # CECOM
-stats.shapiro(df1["dist_csum_model"])
 stats.shapiro(df1["dist_error"])
+stats.shapiro(df1["dist_csum_model"])
 
 # GLORYS
 stats.shapiro(df2["dist_csum_model"])
@@ -108,16 +109,47 @@ stats.shapiro(df2["dist_error"])
 stats.shapiro(df3["dist_csum_model"])
 stats.shapiro(df3["dist_error"])
 
-# Compute the Kruskal-Wallis H-test for independent samples
+# Calculate the Wilcoxon rank-sum test. Testing whether the distributions are the same.
+# The two distibutions are identical or systemically higher or lower than the other.
+
+# Due to the non-parameteric nature of the data. 
+
+# Final distance error
+stats.ranksums(df1["dist_error"], df2["dist_error"])
 
 # Cumulative distance error
-stats.kruskal(df1["dist_csum_model"], df2["dist_csum_model"])
-stats.kruskal(df1["dist_csum_model"], df3["dist_csum_model"])
-stats.kruskal(df2["dist_csum_model"], df3["dist_csum_model"])
+stats.ranksums(df1["dist_csum_model"], df2["dist_csum_model"])
+
+
+# Compute the Kruskal-Wallis H-test for independent samples
+# ANOVA
 
 # Distance error
-stats.kruskal(df1["dist_error"], df2["dist_error"])
-stats.kruskal(df1["dist_error"], df3["dist_error"])
-stats.kruskal(df2["dist_error"], df3["dist_error"])
+stats.kruskal(df1["dist_error"], df2["dist_error"], df3["dist_error"])
+stats.kruskal(df1["dist_csum_model"], df2["dist_csum_model"], df3["dist_csum_model"])
+
+post-hoc test if there's something significant'
+
+# Figure Discussion 5 Asking whether 
+# Wilcoxon signed-rank test.
+# Pair-wise
+
+stats.kruskal(df1["dist_csum_model"], df2["dist_csum_model"], df3["dist_csum_model"])
+
+
+# 1
+
+# Wilcoxon
+H0: Medians are drawn from the same populations/distribution
+H1: The medians are not drawn from the same populations/distribution
+
+That there's some significant difference between then.
+p-value for both of thoe (final distance error and cumulative distance error)
+
+# Kruskal-Wallis
+# The medians are all the same
+
+
+or the GLORYS is worse than the CECOM (1-tail)
 
 
