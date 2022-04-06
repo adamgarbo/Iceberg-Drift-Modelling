@@ -72,7 +72,7 @@ colour = ["red", "lime", "blue", "magenta", "cyan", "yellow"]
 sns.set_palette(colour)
 
 # Set figure DPI
-dpi = 500
+dpi = 300
 
 # -----------------------------------------------------------------------------
 # Paths
@@ -955,6 +955,7 @@ sns.histplot(
     label="CECOM",
 )
 axs[0].axvline(x=df1.dist_error.mean(), color="red", ls="--", lw=2.5)
+axs[0].axvline(x=df1.dist_error.median(), color="red", ls="dotted", lw=2.5)
 axs[1].set(xlabel="Final Distance Error (km)", ylabel="Frequency")
 axs[1].grid(axis="x", ls="dotted")
 sns.histplot(
@@ -967,6 +968,7 @@ sns.histplot(
     label="GLORYS",
 )
 axs[1].axvline(x=df2.dist_error.mean(), color="lime", ls="--", lw=2.5)
+axs[1].axvline(x=df2.dist_error.median(), color="lime", ls="dotted", lw=2.5)
 axs[1].xaxis.set_major_locator(mticker.MultipleLocator(tick_spacing))
 sns.despine()
 axs = axs.flat
@@ -1025,6 +1027,7 @@ sns.histplot(
     label="CECOM",
 )
 axs[0].axvline(x=df1.dist_csum_error.mean(), color="red", ls="--", lw=2.5)
+axs[0].axvline(x=df1.dist_csum_error.median(), color="red", ls="dotted", lw=2.5)
 axs[1].set(xlabel="Cumulative Distance Error (km)", ylabel="Frequency")
 axs[1].grid(axis="x", ls="dotted")
 sns.histplot(
@@ -1038,6 +1041,7 @@ sns.histplot(
     label="GLORYS",
 )
 axs[1].axvline(x=df2.dist_csum_error.mean(), color="lime", ls="--", lw=2.5)
+axs[1].axvline(x=df2.dist_csum_error.median(), color="lime", ls="dotted", lw=2.5)
 axs[1].xaxis.set_major_locator(mticker.MultipleLocator(tick_spacing))
 sns.despine()
 axs = axs.flat
@@ -1241,6 +1245,7 @@ sns.histplot(
     label="CECOM",
 )
 axs[0].axvline(x=df1.dist_error.mean(), color="red", ls="--", lw=2.5)
+axs[0].axvline(x=df1.dist_error.median(), color="red", ls="dotted", lw=2.5)
 axs[1].set(ylabel="Frequency")
 axs[1].grid(axis="x", ls="dotted")
 sns.histplot(
@@ -1254,6 +1259,7 @@ sns.histplot(
     label="GLORYS",
 )
 axs[1].axvline(x=df2.dist_error.mean(), color="lime", ls="--", lw=2.5)
+axs[1].axvline(x=df2.dist_error.median(), color="lime", ls="dotted", lw=2.5)
 axs[2].set(xlabel="Final Distance Error (km)", ylabel="Frequency")
 axs[2].grid(axis="x", ls="dotted")
 sns.histplot(
@@ -1267,6 +1273,7 @@ sns.histplot(
     label="RIOPS",
 )
 axs[2].axvline(x=df2.dist_error.mean(), color="blue", ls="--", lw=2.5)
+axs[2].axvline(x=df2.dist_error.median(), color="blue", ls="dotted", lw=2.5)
 axs[2].xaxis.set_major_locator(mticker.MultipleLocator(tick_spacing))
 sns.despine()
 axs = axs.flat
@@ -1333,7 +1340,8 @@ sns.histplot(
     ax=axs[0],
     label="CECOM",
 )
-axs[0].axvline(x=df1.dist_csum_error.mean(), color="red", ls="--", lw=2.5)
+#axs[0].axvline(x=df1.dist_csum_error.mean(), color="red", ls="--", lw=2.5)
+axs[0].axvline(x=df1.dist_csum_error.median(), color="red", ls="dotted", lw=2.5)
 axs[1].set(ylabel="Frequency")
 axs[1].grid(axis="x", ls="dotted")
 sns.histplot(
@@ -1347,6 +1355,7 @@ sns.histplot(
     label="GLORYS",
 )
 axs[1].axvline(x=df2.dist_csum_error.mean(), color="lime", ls="--", lw=2.5)
+axs[1].axvline(x=df2.dist_csum_error.median(), color="lime", ls="dotted", lw=2.5)
 axs[2].set(xlabel="Cumulative Distance Error (km)", ylabel="Frequency")
 axs[2].grid(axis="x", ls="dotted")
 sns.histplot(
@@ -1360,6 +1369,7 @@ sns.histplot(
     label="RIOPS",
 )
 axs[2].axvline(x=df2.dist_csum_error.mean(), color="blue", ls="--", lw=2.5)
+axs[2].axvline(x=df2.dist_csum_error.median(), color="blue", ls="dotted", lw=2.5)
 axs[2].xaxis.set_major_locator(mticker.MultipleLocator(tick_spacing))
 sns.despine()
 axs = axs.flat
@@ -3516,7 +3526,7 @@ for file in files:
     # Plot error
     plot_distance_maps(fname, path_input, path_figures)
 
-    # Debug
+    # Debug only iterate once
     break
 
 
@@ -3563,6 +3573,16 @@ def plot_distance_maps(filename, path_input, path_figures):
     stats_track = pd.DataFrame()
     stats_track = df.groupby(['ensemble','current'])['dist_error'].apply(rmse).reset_index(name='rmse')
 
+
+    # Load dimensions
+    df2 = pd.read_csv("/Volumes/data/nais_iceberg_drift_model/input/subset.csv", index_col=False)
+    
+    # Change column names to lower case
+    df2 = df2.rename(columns={"beacon_id": "id"})
+
+    # Merge dataframes
+    df = pd.merge(df, df2, on="id")
+
     # Adjust labels according to number of unique environmental input data sources
     if df["branch"].nunique() == 1:
         label1 = ["Observed", "RIOPS"]
@@ -3581,16 +3601,18 @@ def plot_distance_maps(filename, path_input, path_figures):
     ax.set_aspect("equal")
     ax.set(xlabel="East (km)", ylabel="North (km)")
     if df["branch"].nunique() == 2:
-        ax.text(x=0.125, y=0.95, s=f"ID: {beacon}_{interval} Start: {df.datetime.min()} Duration: {df.dur_obs.max():.0f} hrs", fontsize=18, fontweight="bold", ha="left", transform=fig.transFigure)
+        ax.text(x=0.125, y=0.98, s=f"ID: {beacon}_{interval} Start: {df.datetime.min()} Duration: {df.dur_obs.max():.0f} hrs", fontsize=18, fontweight="bold", ha="left", transform=fig.transFigure)
+        ax.text(x=0.125, y=0.95, s=f"Starting Location: {df.lat_obs.iloc[0]:.6f}, {df.lon_obs.iloc[0]:.6f}   Length: {df.length.iloc[0]} m ", fontsize=18, fontweight="bold", ha="left", transform=fig.transFigure)
         ax.text(x=0.125, y=0.92, s=f"{'DE (km):':<15} CECOM: {distance_error.iloc[0]:.1f} GLORYS: {distance_error.iloc[1]:.1f}", fontsize=18, ha="left", transform=fig.transFigure)
         ax.text(x=0.125, y=0.89, s=f"{'RMSE (km):':<12} CECOM: {stats_track.rmse.iloc[0]:.1f} GLORYS: {stats_track.rmse.iloc[1]:.1f}", fontsize=18, ha="left", transform=fig.transFigure)
 
     elif df["branch"].nunique() == 3:
-        ax.text(x=0.125, y=0.95, s=f"ID: {beacon}_{interval} Start: {df.datetime.min()} Duration: {df.dur_obs.max():.0f} hrs", fontsize=18, fontweight="bold", ha="left", transform=fig.transFigure)
+        ax.text(x=0.125, y=0.98, s=f"ID: {beacon}_{interval} Start: {df.datetime.min()} Duration: {df.dur_obs.max():.0f} hrs", fontsize=18, fontweight="bold", ha="left", transform=fig.transFigure)
+        ax.text(x=0.125, y=0.95, s=f"Starting Location: {df.lat_obs.iloc[0]:.6f}, {df.lon_obs.iloc[0]:.6f}   Length: {df.length.iloc[0]} m ", fontsize=18, fontweight="bold", ha="left", transform=fig.transFigure)
+        #ax.text(x=0.125, y=0.92, s=f"DE (km) C: {distance_error.iloc[0]:.1f} G: {distance_error.iloc[1]:.1f} R: {distance_error.iloc[2]:.1f} RMSE (km) C: {stats_track.rmse.iloc[0]:.1f} G: {stats_track.rmse.iloc[1]:.1f} R: {stats_track.rmse.iloc[2]:.1f}", fontsize=18, ha="left", transform=fig.transFigure)
         ax.text(x=0.125, y=0.92, s=f"{'DE (km):':<15} CECOM: {distance_error.iloc[0]:.1f} GLORYS: {distance_error.iloc[1]:.1f} RIOPS: {distance_error.iloc[2]:.1f}", fontsize=18, ha="left", transform=fig.transFigure)
         ax.text(x=0.125, y=0.89, s=f"{'RMSE (km):':<12} CECOM: {stats_track.rmse.iloc[0]:.1f} GLORYS: {stats_track.rmse.iloc[1]:.1f} RIOPS: {stats_track.rmse.iloc[2]:.1f}", fontsize=18, ha="left", transform=fig.transFigure)
 
-        
     sns.lineplot(
         x="x_obs",
         y="y_obs",
@@ -3612,10 +3634,10 @@ def plot_distance_maps(filename, path_input, path_figures):
     )
     ax.legend(labels=label1)
     fig.savefig(
-        path_figures + "map_%s.eps" % filename,
+        path_figures + "map_%s.png" % filename,
         dpi=dpi,
         transparent=False,
         bbox_inches="tight",
-        format='eps',
+        #format='eps',
     )
     plt.close()
